@@ -1,0 +1,10 @@
+Topic 0: 재개발
+Topic 1: 북한
+Topic 2: 징병제
+Topic 3: 공정
+Topic 4: 안철수
+Topic 5: 이재명
+Topic 6: 더불어민주당
+Topic 7: 북한
+Topic 8: 병사월급
+Topic 9: 윤석열
