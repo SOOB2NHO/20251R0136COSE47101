@@ -326,13 +326,13 @@ class EnhancedHierarchicalETM:
 
         for csv_path in csv_files:
             try:
-                print(f"📁 데이터 로드 중: {csv_path}")
+                print(f"데이터 로드 중: {csv_path}")
                 df = pd.read_csv(csv_path, encoding='utf-8')
 
                 texts = df[self.text_column].dropna().drop_duplicates().tolist()
                 texts = [text.strip() for text in texts if text.strip()]
 
-                print(f"✅ {len(texts):,}개 유효 텍스트 추출")
+                print(f"{len(texts):,}개 유효 텍스트 추출")
 
                 for text in texts:
                     file_info.append({
@@ -343,15 +343,15 @@ class EnhancedHierarchicalETM:
                 all_texts.extend(texts)
 
             except Exception as e:
-                print(f"❌ 파일 로드 실패 {csv_path}: {e}")
+                print(f"파일 로드 실패 {csv_path}: {e}")
                 continue
 
-        print(f"🔄 총 {len(all_texts):,}개 문서 로드 완료")
+        print(f"총 {len(all_texts):,}개 문서 로드 완료")
         return all_texts, file_info
 
     def initialize_embeddings_and_topics(self, texts, person_labels, issue_labels):
         """임베딩 및 토픽 초기화"""
-        print("🔧 임베딩 및 토픽 초기화 중...")
+        print("임베딩 및 토픽 초기화 중...")
 
         # KoELECTRA 임베딩 모델 로드
         self.embedding_model = KoELECTRAEmbedding()
@@ -367,7 +367,7 @@ class EnhancedHierarchicalETM:
         bow_matrix = self.vectorizer.fit_transform(texts).toarray()
         self.vocab = self.vectorizer.get_feature_names_out()
 
-        print(f"📊 어휘 크기: {len(self.vocab)}")
+        print(f"어휘 크기: {len(self.vocab)}")
 
         # 단어 임베딩 생성
         word_embeddings = self.embedding_model.encode_words(self.vocab.tolist())
@@ -389,7 +389,7 @@ class EnhancedHierarchicalETM:
 
     def _initialize_political_topic_embeddings(self, texts, person_labels, issue_labels):
         """정치인별 토픽 임베딩 초기화"""
-        print("🏛️ 정치인별 토픽 임베딩 초기화 중...")
+        print("정치인별 토픽 임베딩 초기화 중...")
 
         doc_embeddings = self.embedding_model.encode_documents(texts)
 
@@ -432,7 +432,7 @@ class EnhancedHierarchicalETM:
 
     def train_etm_model(self, bow_matrix, word_embeddings, topic_embeddings):
         """ETM 모델 학습"""
-        print("🚀 계층적 ETM 모델 학습 중...")
+        print("계층적 ETM 모델 학습 중...")
 
         # 모델 생성
         self.etm_model = HierarchicalPoliticalETM(
@@ -487,11 +487,11 @@ class EnhancedHierarchicalETM:
             if (epoch + 1) % 20 == 0:
                 print(f"Epoch {epoch+1}/{PoliticalDomainHyperParameters.EPOCHS}, Loss: {total_loss/len(data_loader):.4f}")
 
-        print("✅ ETM 모델 학습 완료")
+        print("ETM 모델 학습 완료")
 
     def calculate_coherence_score(self, texts):
         """Coherence 점수 계산"""
-        print("📈 Coherence 점수 계산 중...")
+        print("Coherence 점수 계산 중...")
 
         try:
             # 토큰화된 텍스트 생성
@@ -518,16 +518,16 @@ class EnhancedHierarchicalETM:
             )
             coherence_score = coherence_model.get_coherence()
 
-            print(f"🎯 Coherence Score: {coherence_score:.4f}")
+            print(f"Coherence Score: {coherence_score:.4f}")
             return coherence_score
 
         except Exception as e:
-            print(f"❌ Coherence 계산 실패: {e}")
+            print(f"Coherence 계산 실패: {e}")
             return 0.0
 
     def calculate_topic_diversity(self, top_k=25):
         """토픽 다양성 계산"""
-        print("📊 Topic Diversity 계산 중...")
+        print("Topic Diversity 계산 중...")
 
         try:
             topics = self.etm_model.get_topics(self.vocab, top_k=top_k)
@@ -548,16 +548,16 @@ class EnhancedHierarchicalETM:
 
             diversity_score = len(unique_words) / total_words if total_words > 0 else 0
 
-            print(f"🌈 Topic Diversity: {diversity_score:.4f}")
+            print(f"Topic Diversity: {diversity_score:.4f}")
             return diversity_score
 
         except Exception as e:
-            print(f"❌ Topic Diversity 계산 실패: {e}")
+            print(f"Topic Diversity 계산 실패: {e}")
             return 0.0
 
     def calculate_perplexity(self, bow_matrix):
         """Perplexity 점수 계산"""
-        print("🔍 Perplexity 점수 계산 중...")
+        print("Perplexity 점수 계산 중...")
 
         try:
             self.etm_model.eval()
@@ -576,16 +576,16 @@ class EnhancedHierarchicalETM:
             # Perplexity 계산
             perplexity = np.exp(-total_log_likelihood / total_words)
 
-            print(f"📉 Perplexity: {perplexity:.4f}")
+            print(f"Perplexity: {perplexity:.4f}")
             return perplexity
 
         except Exception as e:
-            print(f"❌ Perplexity 계산 실패: {e}")
+            print(f"Perplexity 계산 실패: {e}")
             return float('inf')
 
     def evaluate_model_performance(self, texts, bow_matrix):
         """종합적인 모델 성능 평가"""
-        print("\n🎯 === 계층적 ETM 모델 성능 평가 ===")
+        print("\n=== 계층적 ETM 모델 성능 평가 ===")
 
         # Coherence 점수
         coherence_score = self.calculate_coherence_score(texts)
@@ -604,7 +604,7 @@ class EnhancedHierarchicalETM:
             'num_topics': self.num_topics
         }
 
-        print(f"\n📊 === 성능 평가 요약 ===")
+        print(f"\n=== 성능 평가 요약 ===")
         print(f"Coherence Score: {coherence_score:.4f}")
         print(f"Topic Diversity: {diversity_score:.4f}")
         print(f"Perplexity: {perplexity_score:.4f}")
@@ -613,13 +613,13 @@ class EnhancedHierarchicalETM:
 
     def display_topics(self, num_words=10):
         """토픽별 주요 단어 출력"""
-        print("\n📋 === 계층적 토픽별 주요 단어 ===")
+        print("\n=== 계층적 토픽별 주요 단어 ===")
 
         topics = self.etm_model.get_topics(self.vocab, top_k=num_words)
         topics_info = []
 
         for topic_idx, topic_words in enumerate(topics):
-            print(f"\n🏷️  토픽 {topic_idx + 1}:")
+            print(f"\n토픽 {topic_idx + 1}:")
             for word, weight in topic_words:
                 print(f"   {word}: {weight:.4f}")
 
@@ -633,7 +633,7 @@ class EnhancedHierarchicalETM:
 
     def get_document_topics(self, bow_matrix, texts):
         """각 문서의 토픽 분포 계산"""
-        print("📄 문서별 토픽 분포 계산 중...")
+        print("문서별 토픽 분포 계산 중...")
 
         self.etm_model.eval()
         document_topics = []
@@ -658,7 +658,7 @@ class EnhancedHierarchicalETM:
 
 def run_enhanced_hierarchical_etm_pipeline():
     """향상된 계층적 ETM 파이프라인 실행"""
-    print("🚀 === 향상된 계층적 ETM 토픽 모델링 파이프라인 시작 ===")
+    print("=== 향상된 계층적 ETM 토픽 모델링 파이프라인 시작 ===")
 
     # CSV 파일 리스트 정의
     csv_files = [
@@ -671,10 +671,10 @@ def run_enhanced_hierarchical_etm_pipeline():
 
     # 존재하는 파일만 필터링
     existing_files = [f for f in csv_files if os.path.exists(f)]
-    print(f"📁 처리 가능한 파일: {len(existing_files)}개")
+    print(f"처리 가능한 파일: {len(existing_files)}개")
 
     if not existing_files:
-        print("❌ 처리할 CSV 파일이 없습니다.")
+        print("처리할 CSV 파일이 없습니다.")
         return
 
     # 계층적 ETM 모델링 객체 생성
@@ -687,15 +687,15 @@ def run_enhanced_hierarchical_etm_pipeline():
     all_texts, file_info = etm_analyzer.load_and_preprocess_data(existing_files)
 
     if not all_texts:
-        print("❌ 유효한 텍스트 데이터가 없습니다.")
+        print("유효한 텍스트 데이터가 없습니다.")
         return
 
     # 2. 정치인별 문서 분류
     classifier = PoliticalDocumentClassifier()
     person_labels, issue_labels = classifier.classify_documents(all_texts)
 
-    print(f"📊 인물별 분포: {dict(zip(*np.unique(person_labels, return_counts=True)))}")
-    print(f"📊 이슈별 분포: {dict(zip(*np.unique(issue_labels, return_counts=True)))}")
+    print(f"인물별 분포: {dict(zip(*np.unique(person_labels, return_counts=True)))}")
+    print(f"이슈별 분포: {dict(zip(*np.unique(issue_labels, return_counts=True)))}")
 
     # 3. 임베딩 및 토픽 초기화
     bow_matrix, word_embeddings, topic_embeddings = etm_analyzer.initialize_embeddings_and_topics(
@@ -714,8 +714,8 @@ def run_enhanced_hierarchical_etm_pipeline():
     # 7. 문서별 토픽 분포 계산
     document_topics_df = etm_analyzer.get_document_topics(bow_matrix, all_texts)
 
-    print("\n🎉 === 계층적 ETM 토픽 모델링 파이프라인 완료 ===")
-    print(f"📊 최종 성능 지표:")
+    print("\n=== 계층적 ETM 토픽 모델링 파이프라인 완료 ===")
+    print(f"최종 성능 지표:")
     print(f"   Coherence: {evaluation_results['coherence_score']:.4f}")
     print(f"   Diversity: {evaluation_results['topic_diversity']:.4f}")
     print(f"   Perplexity: {evaluation_results['perplexity']:.4f}")
@@ -727,9 +727,9 @@ if __name__ == "__main__":
     # 필요한 라이브러리 설치 확인
     try:
         import gensim
-        print("✅ Gensim 라이브러리 확인")
+        print("Gensim 라이브러리 확인")
     except ImportError:
-        print("❌ Gensim 설치 필요")
+        print("Gensim 설치 필요")
         exit()
 
     # 파이프라인 실행
