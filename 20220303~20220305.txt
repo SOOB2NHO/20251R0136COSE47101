@@ -1,0 +1,10 @@
+Topic 0: 이재명
+Topic 1: 부정선거
+Topic 2: 북한
+Topic 3: 윤석열
+Topic 4: 더불어민주당
+Topic 5: 윤석열
+Topic 6: 원전
+Topic 7: 화천대유
+Topic 8: 안철수
+Topic 9: 사전투표

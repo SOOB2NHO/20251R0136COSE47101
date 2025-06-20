@@ -1,0 +1,10 @@
+Topic 0: 북한
+Topic 1: 안철수
+Topic 2: 안철수
+Topic 3: 이재명
+Topic 4: 이재명
+Topic 5: 안철수
+Topic 6: 원전
+Topic 7: 주가조작
+Topic 8: 무속
+Topic 9: 부정선거
