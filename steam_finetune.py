@@ -45,3 +45,9 @@ trainer = Trainer(
 
 trainer.train()
 trainer.evaluate()
+
+# 사용법
+# from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+# model = AutoModelForSequenceClassification.from_pretrained("./stream-kcelectra-finetuned")
+# tokenizer = AutoTokenizer.from_pretrained("./stream-kcelctra-finetuned")
