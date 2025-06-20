@@ -1,0 +1,86 @@
+7e3c3a3 SOOB2NHO 2025-06-21 00:36:56 +0900  (origin/main, origin/HEAD) Update README.md
+e637a1b Kang Hyeonmin 2025-06-21 00:35:17 +0900  Final_clustering
+ed2930b SOOB2NHO 2025-06-21 00:34:47 +0900  Update README.md
+ceefd2a Kang Hyeonmin 2025-06-21 00:32:40 +0900  BERTopic modeling
+656df87 Kang Hyeonmin 2025-06-21 00:32:18 +0900  Delete pipeline/LDA_final.py
+469258b SOOB2NHO 2025-06-21 00:32:06 +0900  (origin/jihyung) Delete README.md
+4633680 Kang Hyeonmin 2025-06-21 00:31:52 +0900  Add files via upload
+885ad1d Kang Hyeonmin 2025-06-21 00:30:54 +0900  (origin/kang) Delete youtube_data/umap_clusters.html
+5bccfa0 ahnji0520 2025-06-21 00:21:10 +0900  Merge branch 'main' of https://github.com/SOOB2NHO/KU_COSE471_SUMALSA
+116ade6 hyeonmin 2025-06-21 00:20:20 +0900  requirements for topic modeling
+9197b3b SOOB2NHO 2025-06-21 00:19:41 +0900  Final XGBoost code
+9186e34 ahnji0520 2025-06-21 00:19:32 +0900  fine-tuning code
+0e46699 SOOB2NHO 2025-06-21 00:18:53 +0900  Final crawling code
+9abd7bb SOOB2NHO 2025-06-21 00:17:01 +0900  Final data for 20th election
+15eb6e3 SOOB2NHO 2025-06-21 00:16:40 +0900  Final data for 21th election
+e0f3804 hyeonmin 2025-06-21 00:16:14 +0900  지지율 processed data
+70de833 SOOB2NHO 2025-06-21 00:15:54 +0900  Final data for 20th election
+f317223 hyeonmin 2025-06-21 00:15:46 +0900  지지율 raw data
+394d7cf SOOB2NHO 2025-06-21 00:15:12 +0900  Final data for 20th election
+22abed2 hyeonmin 2025-06-21 00:15:03 +0900  지지율 평균 전처리
+148ad3b SOOB2NHO 2025-06-21 00:14:51 +0900  Delete cluster_sentiment_summary_final20.csv
+3fbeb9f SOOB2NHO 2025-06-21 00:14:43 +0900  Delete merged_comments_20220202~20220206.csv
+8a6acd6 SOOB2NHO 2025-06-21 00:14:35 +0900  Delete merged_comments_20220212~20220214.csv
+15793e9 SOOB2NHO 2025-06-21 00:14:15 +0900  Final data for 20th election
+e555e90 SOOB2NHO 2025-06-21 00:12:43 +0900  Final data for 20th election
+f168bb1 hyeonmin 2025-06-21 00:12:10 +0900  BERTopic 모델 학습 및 성능 평가
+b01ec85 SOOB2NHO 2025-06-21 00:12:07 +0900  Delete 20220303~20220305.txt
+b83cfdc SOOB2NHO 2025-06-21 00:12:00 +0900  Delete 20220226~20220228.txt
+967fa87 SOOB2NHO 2025-06-21 00:11:54 +0900  Delete 20220222~20220224.txt
+1dbf2b9 hyeonmin 2025-06-21 00:11:52 +0900  BERTopic 키워드 사전 구축 및 임베딩
+a7017de SOOB2NHO 2025-06-21 00:11:47 +0900  Delete 20220212~20220214.txt
+7e69479 SOOB2NHO 2025-06-21 00:11:40 +0900  Delete 20220202~20220206.txt
+2770c8f SOOB2NHO 2025-06-21 00:11:09 +0900  Final data for 20th election
+794499c SOOB2NHO 2025-06-21 00:06:19 +0900  (HEAD -> soob) Final data
+d5eef23 hyeonmin 2025-06-21 00:02:47 +0900  ETM_final 주석 수정
+1dbd142 hyeonmin 2025-06-21 00:01:16 +0900  ETM_embedding 주석 수정
+253742d SOOB2NHO 2025-06-21 00:00:30 +0900  (main) Final organizing for project
+09b1668 torchroh 2025-06-20 23:58:33 +0900  (origin/torchroh) Add files via upload
+dee7583 SOOB2NHO 2025-06-20 23:57:24 +0900  (refs/stash) On soob: WIP: stash before switching to main
+877c0e8 SOOB2NHO 2025-06-20 23:57:24 +0900  index on soob: 484fb2f Organizing Final pipeline & data
+1364e5d ahnji0520 2025-06-20 23:56:51 +0900  add requirements to steam_finetune.py
+2cb7150 hyeonmin 2025-06-20 23:56:13 +0900  ETM 모델 학습 및 성능 평가
+d3dfc77 ahnji0520 2025-06-20 23:55:45 +0900  add how-to-use to steam_finetune.py
+cb90263 hyeonmin 2025-06-20 23:55:45 +0900  ETM 텍스트 전처리 및 계층적 임베딩
+b594471 ahnji0520 2025-06-20 23:54:28 +0900  fine-tuning kcelectra with steam dataset
+484fb2f SOOB2NHO 2025-06-20 23:53:29 +0900  Organizing Final pipeline & data
+ed1db23 ahnji0520 2025-06-20 23:53:18 +0900  add requirements to khatespeech_finetune.py
+850d8f0 torchroh 2025-06-20 23:53:03 +0900  Delete sentiment_youtube.py
+3261a27 ahnji0520 2025-06-20 23:51:56 +0900  add how-to-use to khatespeech_finetune.py
+b671042 SOOB2NHO 2025-06-20 23:50:37 +0900  (origin/soob) Feature engineering XGBoost before Set transformer XGBoost
+91274f4 hyeonmin 2025-06-20 23:50:04 +0900  LDA 모델 학습 및 성능 평가
+94cd944 ahnji0520 2025-06-20 23:48:08 +0900  fix: multi-label
+44dde51 ahnji0520 2025-06-20 23:46:20 +0900  fine-tuning kclectra with k-hate speech dataset
+7bdda08 hyeonmin 2025-06-20 23:46:07 +0900  LDA 텍스트 전처리 및 코퍼스 생성
+dda7759 ahnji0520 2025-06-20 23:35:52 +0900  add files related to data crawling
+f7a5b1a ahnji0520 2025-06-20 23:34:01 +0900  add requirements.txt
+8e1e724 ahnji0520 2025-06-20 23:33:22 +0900  add data crawling code
+f530acb SOOB2NHO 2025-06-20 23:29:19 +0900  Final XGBoost.py
+de99cdd SOOB2NHO 2025-05-30 18:50:16 +0900  final data set
+4c95a78 SOOB2NHO 2025-05-29 00:59:18 +0900  댓글봇 추적으로 크롤링 코드 수정 및 데이터셋 업데이트
+05cdd71 torchroh 2025-05-27 12:59:00 +0900  Deleted dummy files
+9135535 torchroh 2025-05-27 12:52:11 +0900  kjh
+14516ef torchroh 2025-05-27 12:50:21 +0900  Create aa.txt
+1c580fb hyeonmin 2025-05-19 00:43:26 +0900  cralwer changed ; clustering process
+76770dd hyeonmin 2025-05-10 18:14:32 +0900  Fix: YouTube 데이터 수집 기간 및 feature 변경
+7b59bd8 hyeonmin 2025-05-09 15:17:20 +0900  feat: add cleaned crawler folders
+3f26c91 torchroh 2025-05-21 17:23:40 +0900  Delete sentiment_youtube.ipynb
+1c08652 torchroh 2025-05-21 17:22:32 +0900  Add files via upload
+5600465 torchroh 2025-05-21 17:18:52 +0900  Add files via upload
+8898d32 torchroh 2025-05-21 17:17:09 +0900  Colab을 통해 생성됨
+083f4be torchroh 2025-05-21 17:14:29 +0900  Colab을 통해 생성됨
+4b7bd55 torchroh 2025-05-21 17:06:27 +0900  Colab을 통해 생성됨
+e7993fc SOOB2NHO 2025-05-20 21:01:51 +0900  change the dataset
+a1e5b40 ahnji0520 2025-05-09 16:32:13 +0900  Create README.md
+5774cbe SOOB2NHO 2025-05-09 14:17:34 +0900  reorganized
+104ca7e SOOB2NHO 2025-05-09 14:12:45 +0900  Merge branch 'main' of github.com:SOOB2NHO/KU_COSE471_SUMALSA into soob
+4278a01 ahnji0520 2025-05-09 14:08:51 +0900  (origin/gina) 21 대선 크롤링 자료 (2025-05-09)
+373981f SOOB2NHO 2025-05-09 14:07:03 +0900  🔥 remove: delete all files from main branch
+91c1d19 SOOB2NHO 2025-05-09 13:57:21 +0900  initial commit
+e60f101 SOOB2NHO 2025-05-09 12:37:44 +0900  Delete all_news_대선_20220101~20220310.xlsx
+e3880ce SOOB2NHO 2025-05-09 12:37:35 +0900  Delete all_news_안철수_20220101~20220310.xlsx
+4367837 SOOB2NHO 2025-05-09 12:37:27 +0900  Delete all_news_윤석열_20220101~20220310.xlsx
+5ef3aeb SOOB2NHO 2025-05-09 12:37:13 +0900  Delete all_news_이재명_20220101~20220310.xlsx
+e4bd70d SOOB2NHO 2025-05-09 12:37:03 +0900  Delete dcinside.py
+4489f94 SOOB2NHO 2025-05-09 12:36:50 +0900  Delete .conda directory
+55206fc 호수빈 2025-05-09 12:35:31 +0900  Initialize model branch (main)
