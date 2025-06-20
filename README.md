@@ -1,64 +1,42 @@
-# 2. 정치 뉴스 및 SNS 여론 분석 기반 정당 성향 분류
+# COSE471 (2025-1) 대통령 선거 득표율 예측 프로젝트 - SUMALSA
 
-**2025년 21대 대통령 선거**를 앞두고, 뉴스 기사 및 온라인 커뮤니티 데이터를 수집하여 정당 성향 분석에 활용하기 위한 데이터 수집 파이프라인
-
----
-
-## 📊 수집 대상 및 기간
-
-- **대상 플랫폼**:  
-  1. **네이버 뉴스 (정치 기사 + 댓글)**  
-  2. **디시인사이드 정치/사회 갤러리 (게시글)**
-  3. **유튜브 6개 언론사 (한겨레, MBC, 경향, 동아일보, 조선일보, 중앙일보)**
-
-- **수집 기간**:  
+**Repository:** https://github.com/SOOB2NHO/20251R0136COSE47101.git  
+**팀명:** SUMALSA (Social media User coMment Analysis for South KoreA election forecasting)  
+**과목:** 고려대학교 COSE471 PROJECT
 
 ---
 
-## 📘 수집 내용
+## 🔍 프로젝트 개요
 
-### 1. 📰 네이버 뉴스 + 댓글 수집기 (API 기반)
-
-- **검색 키워드**: `"21대 대선 / 20대 대선 OR 윤석열 OR 이재명 OR 안철수"`
-- **수집 방식**:  
-  - 네이버 뉴스 검색 API를 통해 뉴스 기사 URL 최대 1000개 수집  
-  - 기사 필터링: `n.news.naver.com` 도메인만 수집  
-  - 각 기사별 댓글을 좋아요 순으로 수집 (`sort=FAVORITE`)
-- **수집 항목**:
-  - 뉴스 제목
-  - 뉴스 URL
-  - 작성일
-  - 댓글 수
-  - 댓글 내용 리스트
-- **결과 파일**:
-  - `filtered_naver_news.csv` (기사 목록)
-  - `naver_comments_result.csv` (기사별 댓글 데이터)
+전통 여론조사 방식은 응답률 저하, 비용 상승, 샘플 편향 문제로 인해 실시간 예측에 한계를 보입니다.  
+이에 본 프로젝트는 **네이버 뉴스 및 유튜브 댓글 기반의 여론 분석 모델**을 통해 **21대 대통령 선거 득표율을 예측**합니다.  
+20대 대선 데이터를 학습용으로 활용하여 21대 대선의 실시간 적용 가능성을 검증합니다.
 
 ---
 
-### 2. 🗣️ 디시인사이드 정치/사회 갤러리 게시글 수집기
+## 🧩 프레임워크 구조
 
-- **대상 갤러리**:  
-  - [정치 갤러리](https://gall.dcinside.com/board/lists/?id=politics)  
-  - [사회 갤러리](https://gall.dcinside.com/board/lists/?id=society)
-- **수집 방식**:  
-  - Selenium 기반 자동 스크롤 및 게시글 목록 탐색
-  - 게시글 상세 페이지 접근 후 정보 추출
-- **수집 항목**:
-  - 게시글 ID
-  - 게시글 제목
-  - 게시글 조회수
-  - 게시글 좋아요 수
-- **결과 파일**:
-  - `dcinside_politics_20220101_20220310.csv`
-  - `dcinside_society_20220101_20220310.csv`
+본 연구의 프레임워크는 다음의 5단계로 구성됩니다:
+
+1. **데이터 수집**: 네이버 뉴스 및 유튜브 영상에서 댓글 자동 수집  
+2. **봇 필터링**: 휴리스틱 및 ML 기반 필터로 비정상 댓글 제거  
+3. **토픽 모델링**: BERTopic을 이용해 주요 정치 이슈 도출  
+4. **감정 분석**: KcELECTRA를 미세조정하여 댓글 감성 분류  
+5. **득표율 예측**: 토픽-감정 피처를 기반으로 XGBoost 회귀 모델 학습
 
 ---
 
-## 🛠️ 기술 스택
+## 📈 주요 결과
+1. 댓글 기반 정치 여론 흐름 시계열 시각화
+2. 후보별 감성 분석 결과 히트맵 및 다이버징 바차트
+3. 실제 선거 결과와 예측 결과의 비교 시각화
+4. 예측 정확도 (RMSE 기준): X.XX%
 
-- Python 3.8+
-- `requests`, `pandas`, `re`, `time`
-- `Selenium`, `BeautifulSoup4`
-- 네이버 OpenAPI: `https://openapi.naver.com/v1/search/news.json`
-- 네이버 댓글 API: `https://apis.naver.com/commentBox/cbox/web_neo_list_jsonp.json`
+---
+
+## 📌 사용 기술
+1. BERTopic (토픽 모델링)
+2. KcELECTRA (감성 분석)
+3. XGBoost (회귀 예측)
+4. pandas, scikit-learn, matplotlib
+
