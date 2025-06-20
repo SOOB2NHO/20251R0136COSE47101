@@ -46,6 +46,11 @@ trainer = Trainer(
 trainer.train()
 trainer.evaluate()
 
+# requirements
+# !pip install transformers==4.41.2
+# !pip install peft==0.7.1
+# !pip install numpy==1.25.2
+
 # 사용법
 # from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
