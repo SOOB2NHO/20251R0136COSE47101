@@ -193,13 +193,13 @@ class ETMPreprocessor:
 
         for csv_path in csv_files:
             try:
-                print(f"📁 데이터 로드 중: {csv_path}")
+                print(f"데이터 로드 중: {csv_path}")
                 df = pd.read_csv(csv_path, encoding='utf-8')
 
                 texts = df[self.text_column].dropna().drop_duplicates().tolist()
                 texts = [text.strip() for text in texts if text.strip()]
 
-                print(f"✅ {len(texts):,}개 유효 텍스트 추출")
+                print(f"{len(texts):,}개 유효 텍스트 추출")
 
                 for text in texts:
                     file_info.append({
@@ -210,19 +210,19 @@ class ETMPreprocessor:
                 all_texts.extend(texts)
 
             except Exception as e:
-                print(f"❌ 파일 로드 실패 {csv_path}: {e}")
+                print(f"파일 로드 실패 {csv_path}: {e}")
                 continue
 
-        print(f"🔄 총 {len(all_texts):,}개 문서 로드 완료")
+        print(f"총 {len(all_texts):,}개 문서 로드 완료")
         return all_texts, file_info
 
     def setup_hierarchical_structure(self):
         """계층적 토픽 구조 설정"""
-        print("🏗️ 계층적 토픽 구조 설정 중...")
+        print("계층적 토픽 구조 설정 중...")
 
         hierarchy = PoliticalDomainHyperParameters.POLITICAL_HIERARCHY
         
-        print("📊 정치 도메인 계층 구조:")
+        print("정치 도메인 계층 구조:")
         print(f"   Level 1 (인물): {hierarchy['level1']}")
         print(f"   Level 2 (이슈): {hierarchy['level2']}")
         print(f"   총 토픽 수: {len(hierarchy['level1']) * len(hierarchy['level2'])}")
@@ -240,30 +240,30 @@ class ETMPreprocessor:
                 }
                 topic_id += 1
 
-        print("✅ 계층적 구조 설정 완료")
+        print("계층적 구조 설정 완료")
         return hierarchy, topic_mapping
 
     def setup_political_dictionary(self):
         """정치인별 단어 사전 설정"""
-        print("📚 정치인별 단어 사전 설정 중...")
+        print("정치인별 단어 사전 설정 중...")
 
         self.classifier = PoliticalDocumentClassifier()
         
-        print("👥 인물별 키워드:")
+        print("인물별 키워드:")
         for person, keywords in self.classifier.person_keywords.items():
             if keywords:  # neutral은 빈 리스트이므로 제외
                 print(f"   {person}: {keywords}")
 
-        print("\n📋 이슈별 키워드:")
+        print("\n이슈별 키워드:")
         for issue, keywords in self.classifier.issue_keywords.items():
             print(f"   {issue}: {keywords}")
 
-        print("✅ 정치인별 단어 사전 설정 완료")
+        print("정치인별 단어 사전 설정 완료")
         return self.classifier
 
     def classify_documents(self, texts):
         """문서 분류 수행"""
-        print("🏷️ 문서 분류 수행 중...")
+        print("문서 분류 수행 중...")
         
         if self.classifier is None:
             self.setup_political_dictionary()
@@ -271,14 +271,14 @@ class ETMPreprocessor:
         person_labels, issue_labels = self.classifier.classify_documents(texts)
         person_counts, issue_counts = self.classifier.get_classification_summary(person_labels, issue_labels)
 
-        print(f"📊 인물별 분포: {person_counts}")
-        print(f"📊 이슈별 분포: {issue_counts}")
+        print(f"인물별 분포: {person_counts}")
+        print(f"이슈별 분포: {issue_counts}")
 
         return person_labels, issue_labels
 
     def create_bow_matrix(self, texts):
         """BoW 행렬 생성"""
-        print("📊 BoW 행렬 생성 중...")
+        print("BoW 행렬 생성 중...")
 
         self.vectorizer = CountVectorizer(
             min_df=PoliticalDomainHyperParameters.MIN_DF,
@@ -290,14 +290,14 @@ class ETMPreprocessor:
         bow_matrix = self.vectorizer.fit_transform(texts).toarray()
         self.vocab = self.vectorizer.get_feature_names_out()
 
-        print(f"📊 어휘 크기: {len(self.vocab)}")
-        print(f"📊 BoW 행렬 크기: {bow_matrix.shape}")
+        print(f"어휘 크기: {len(self.vocab)}")
+        print(f"BoW 행렬 크기: {bow_matrix.shape}")
 
         return bow_matrix
 
     def generate_embeddings(self, texts, person_labels, issue_labels):
         """임베딩 생성"""
-        print("🔧 임베딩 생성 중...")
+        print("임베딩 생성 중...")
 
         # KoELECTRA 임베딩 모델 로드
         self.embedding_model = KoELECTRAEmbedding()
@@ -306,7 +306,7 @@ class ETMPreprocessor:
         bow_matrix = self.create_bow_matrix(texts)
 
         # 단어 임베딩 생성
-        print("📝 단어 임베딩 생성 중...")
+        print("단어 임베딩 생성 중...")
         word_embeddings = self.embedding_model.encode_words(self.vocab.tolist())
 
         # 차원 조정
@@ -318,17 +318,17 @@ class ETMPreprocessor:
                 word_embeddings = normalize(word_embeddings, norm='l2')
 
         # 토픽 임베딩 초기화
-        print("🏛️ 토픽 임베딩 초기화 중...")
+        print("토픽 임베딩 초기화 중...")
         topic_embeddings = self._initialize_political_topic_embeddings(
             texts, person_labels, issue_labels
         )
 
-        print("✅ 임베딩 생성 완료")
+        print("임베딩 생성 완료")
         return bow_matrix, word_embeddings, topic_embeddings
 
     def _initialize_political_topic_embeddings(self, texts, person_labels, issue_labels):
         """정치인별 토픽 임베딩 초기화"""
-        print("🏛️ 정치인별 토픽 임베딩 초기화 중...")
+        print("정치인별 토픽 임베딩 초기화 중...")
 
         doc_embeddings = self.embedding_model.encode_documents(texts)
 
@@ -371,7 +371,7 @@ class ETMPreprocessor:
 
     def process_all(self, texts):
         """모든 전처리 과정을 한 번에 실행"""
-        print("🚀 === ETM 전처리 과정 시작 ===")
+        print("=== ETM 전처리 과정 시작 ===")
 
         # 1. 계층적 구조 설정
         hierarchy, topic_mapping = self.setup_hierarchical_structure()
@@ -401,12 +401,12 @@ class ETMPreprocessor:
             'vectorizer': self.vectorizer
         }
 
-        print("✅ === ETM 전처리 과정 완료 ===")
+        print("=== ETM 전처리 과정 완료 ===")
         return self.preprocessing_results
 
 def run_etm_preprocessing_pipeline():
     """ETM 전처리 파이프라인 실행"""
-    print("🚀 === ETM 전처리 파이프라인 시작 ===")
+    print("=== ETM 전처리 파이프라인 시작 ===")
 
     # CSV 파일 리스트 정의
     csv_files = [
@@ -419,10 +419,10 @@ def run_etm_preprocessing_pipeline():
 
     # 존재하는 파일만 필터링
     existing_files = [f for f in csv_files if os.path.exists(f)]
-    print(f"📁 처리 가능한 파일: {len(existing_files)}개")
+    print(f"처리 가능한 파일: {len(existing_files)}개")
 
     if not existing_files:
-        print("❌ 처리할 CSV 파일이 없습니다.")
+        print("처리할 CSV 파일이 없습니다.")
         return
 
     # 전처리 객체 생성
@@ -432,14 +432,14 @@ def run_etm_preprocessing_pipeline():
     all_texts, file_info = preprocessor.load_and_preprocess_data(existing_files)
 
     if not all_texts:
-        print("❌ 유효한 텍스트 데이터가 없습니다.")
+        print("유효한 텍스트 데이터가 없습니다.")
         return
 
     # 2. 전체 전처리 과정 실행
     results = preprocessor.process_all(all_texts)
 
-    print("\n🎉 === ETM 전처리 파이프라인 완료 ===")
-    print(f"📊 결과 요약:")
+    print("\n=== ETM 전처리 파이프라인 완료 ===")
+    print(f"결과 요약:")
     print(f"   문서 수: {results['bow_matrix'].shape[0]:,}")
     print(f"   어휘 수: {results['bow_matrix'].shape[1]:,}")
     print(f"   토픽 수: {results['topic_embeddings'].shape[0]}")
