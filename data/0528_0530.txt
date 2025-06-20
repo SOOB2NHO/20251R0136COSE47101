@@ -1,0 +1,10 @@
+Topic 0: 북한
+Topic 1: 특검
+Topic 2: 김문수
+Topic 3: 이준석
+Topic 4: 이준석
+Topic 5: 사전투표
+Topic 6: 이준석
+Topic 7: 안보
+Topic 8: 이준석
+Topic 9: 개혁신당

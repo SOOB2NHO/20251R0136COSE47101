@@ -1,0 +1,10 @@
+Topic 0: 사전투표
+Topic 1: 최저임금
+Topic 2: 김문수
+Topic 3: 이재명
+Topic 4: 권영국
+Topic 5: 한덕수
+Topic 6: 북한
+Topic 7: 여론조사
+Topic 8: 여론조사
+Topic 9: 부정선거
