@@ -68,3 +68,9 @@ trainer = Trainer(
 
 # 9. 학습 시작
 trainer.train()
+
+# 사용법
+# from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+# model = AutoModelForSequenceClassification.from_pretrained("./korean-sentiment-model-2")
+# tokenizer = AutoTokenizer.from_pretrained("./korean-sentiment-model-2")
